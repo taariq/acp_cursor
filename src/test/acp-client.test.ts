@@ -10,10 +10,17 @@ suite('ACPClient Test Suite', () => {
     assert.ok(client);
   });
 
-  test('Can initialize protocol version', async () => {
+  test('Can get protocol version from SDK', async () => {
     const client = new ACPClient();
     const version = await client.getProtocolVersion();
     assert.ok(version);
-    assert.strictEqual(typeof version, 'string');
+    assert.strictEqual(typeof version, 'number');
+    assert.strictEqual(version, 1); // ACP protocol version 1
+  });
+
+  test('Can access SDK exports', async () => {
+    const client = new ACPClient();
+    const hasSDK = await client.hasSDKAccess();
+    assert.strictEqual(hasSDK, true);
   });
 });

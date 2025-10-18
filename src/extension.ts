@@ -12,8 +12,20 @@ export function activate(context: vscode.ExtensionContext) {
   const acpClient = new ACPClient();
 
   const startAgentCommand = vscode.commands.registerCommand('acp.startAgent', async () => {
-    const version = await acpClient.getProtocolVersion();
-    vscode.window.showInformationMessage(`ACP Client Protocol Version: ${version}`);
+    try {
+      const version = await acpClient.getProtocolVersion();
+      const hasSDK = await acpClient.hasSDKAccess();
+
+      if (hasSDK) {
+        vscode.window.showInformationMessage(
+          `ACP Client ready! Protocol Version: ${version}`
+        );
+      } else {
+        vscode.window.showErrorMessage('ACP SDK not properly loaded');
+      }
+    } catch (error) {
+      vscode.window.showErrorMessage(`ACP Client error: ${error}`);
+    }
   });
 
   context.subscriptions.push(startAgentCommand);
