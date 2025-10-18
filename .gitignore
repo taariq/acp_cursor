@@ -1,2 +1,12 @@
 # Claude Code user-specific instructions
 .claude/
+
+# Dependencies
+node_modules/
+
+# Build output
+out/
+*.vsix
+
+# VS Code test artifacts
+.vscode-test/
