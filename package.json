@@ -16,8 +16,32 @@
       {
         "command": "acp.startAgent",
         "title": "ACP: Start Agent"
+      },
+      {
+        "command": "acp.stopAgent",
+        "title": "ACP: Stop Agent"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "ACP Client",
+      "properties": {
+        "acp.agentCommand": {
+          "type": "string",
+          "default": "node",
+          "description": "Command to run the ACP agent"
+        },
+        "acp.agentArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "node_modules/@agentclientprotocol/sdk/dist/examples/agent.js"
+          ],
+          "description": "Arguments to pass to the agent command"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
