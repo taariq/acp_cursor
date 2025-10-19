@@ -3,6 +3,7 @@
   "displayName": "ACP Client for Cursor",
   "description": "Agent Client Protocol support for Cursor/VS Code",
   "version": "0.0.1",
+  "publisher": "acp-cursor",
   "engines": {
     "vscode": "^1.85.0"
   },
