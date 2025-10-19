@@ -14,11 +14,20 @@
    - This will launch a new Cursor window with the extension loaded
    - Look for "[Extension Development Host]" in the title bar
 
-3. **Test the command**
-   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
-   - Type: "ACP: Start Agent"
-   - Run the command
-   - You should see: "ACP Client ready! Protocol Version: 1"
+3. **Test Agent Spawning**
+   - Look for the status bar item: "$(debug-stop) ACP Agent" (bottom left)
+   - Click it or use Command Palette: "ACP: Start Agent"
+   - You should see:
+     * "Starting ACP agent..." notification
+     * Status bar changes to "$(check) ACP Agent"
+     * "ACP Agent started successfully!" notification
+   - Check the Debug Console for agent communication logs
+
+4. **Test Agent Stopping**
+   - Click the status bar item (now shows green checkmark)
+   - Or use Command Palette: "ACP: Stop Agent"
+   - Status bar returns to "$(debug-stop) ACP Agent"
+   - "ACP Agent stopped." notification
 
 ## Method 2: Install Locally (More Permanent)
 
