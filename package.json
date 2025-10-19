@@ -3,21 +3,48 @@
   "displayName": "ACP Client for Cursor",
   "description": "Agent Client Protocol support for Cursor/VS Code",
   "version": "0.0.1",
+  "publisher": "acp-cursor",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "acp.startAgent",
         "title": "ACP: Start Agent"
+      },
+      {
+        "command": "acp.stopAgent",
+        "title": "ACP: Stop Agent"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "ACP Client",
+      "properties": {
+        "acp.agentCommand": {
+          "type": "string",
+          "default": "node",
+          "description": "Command to run the ACP agent"
+        },
+        "acp.agentArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "node_modules/@agentclientprotocol/sdk/dist/examples/agent.js"
+          ],
+          "description": "Arguments to pass to the agent command"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

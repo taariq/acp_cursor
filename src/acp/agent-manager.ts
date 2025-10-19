@@ -30,4 +30,35 @@ export class AgentManager {
       };
     }
   }
+
+  spawnAgent(command: string, args: string[]): SpawnResult {
+    try {
+      const process = spawn(command, args, {
+        stdio: ['pipe', 'pipe', 'pipe']
+      });
+
+      let hasError = false;
+      process.on('error', (error) => {
+        hasError = true;
+        console.error('[AgentManager] Process error:', error);
+      });
+
+      // Give process a moment to fail if there's an immediate error
+      setTimeout(() => {
+        if (hasError) {
+          return;
+        }
+      }, 100);
+
+      return {
+        success: true,
+        process
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      };
+    }
+  }
 }
